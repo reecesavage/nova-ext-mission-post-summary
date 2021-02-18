@@ -1,0 +1,16 @@
+{
+    "nova_ext_mission_post_summary": {
+        "nova_ext_mission_post_summary": {
+            "name": "Summary - Label",
+            "value": "Summary"
+        },
+        "mission_ext_mission_post_summary_enable": {
+            "name": "Summary Field Enable\/Disable - Label",
+            "value": "Summary Field Enable"
+        }
+    },
+    "setting": {
+        "summary_mode": "1",
+        "rows": "10"
+    }
+}
