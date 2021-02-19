@@ -92,7 +92,7 @@ class __extensions__nova_ext_mission_post_summary__Manage extends Nova_controlle
     public function config()
     {
           Auth::check_access('site/settings');
-        $data['title'] = 'Summary Label Configuration';
+        $data['title'] = 'Summary Configuration';
         $requiredPostFields['post'] = ['nova_ext_mission_post_summary'];
         $requiredMissionFields['mission'] = ['mission_ext_mission_post_summary_enable'];
         if ($list = $this->saveColumn($requiredPostFields, $requiredMissionFields))
@@ -133,7 +133,7 @@ class __extensions__nova_ext_mission_post_summary__Manage extends Nova_controlle
 
             $message = sprintf(lang('flash_success') ,
             // TODO: i18n...
-            'Labeled', lang('actions_updated') , '');
+            'Configuration', lang('actions_updated') , '');
 
             $flash['status'] = 'success';
             $flash['message'] = text_output($message);
@@ -142,63 +142,9 @@ class __extensions__nova_ext_mission_post_summary__Manage extends Nova_controlle
 
         }
 
-        $indexsql = "SHOW INDEX FROM nova_posts";
-        $postIndex = $this->db->query($indexsql);
-        $data['postFlag'] = false;
-        $data['missionFlag'] = false;
-        foreach ($postIndex->result() as $postResult)
-        {
-            if ($postResult->Key_name == 'post_ordered_mission_post_summary')
-            {
+       
 
-                $data['postFlag'] = true;
-                break;
-            }
-        }
-
-        $indexsql = "SHOW INDEX FROM nova_missions";
-        $missionIndex = $this->db->query($indexsql);
-
-        foreach ($missionIndex->result() as $missionResult)
-        {
-            if ($missionResult->Key_name == 'post_ordered_mission_summary')
-            {
-
-                $data['missionFlag'] = true;
-                break;
-            }
-        }
-
-        if (isset($_POST['submit']) && $_POST['submit'] == 'createIndex')
-        {
-
-            if (empty($data['postFlag']))
-            {
-                $sql = "CREATE INDEX  post_ordered_mission_post_summary ON nova_posts (`nova_ext_mission_post_summary`)";
-                $this->db->query($sql);
-
-                $data['postFlag'] = true;
-            }
-
-            if (empty($data['missionFlag']))
-            {
-                $sql = "CREATE INDEX  post_ordered_mission_summary ON nova_missions (`mission_ext_mission_post_summary_enable`)";
-
-                $this->db->query($sql);
-
-                $data['missionFlag'] = true;
-            }
-
-            $message = sprintf(lang('flash_success') ,
-            // TODO: i18n...
-            'Index added successfully', '', '');
-
-            $flash['status'] = 'success';
-            $flash['message'] = text_output($message);
-
-            $this->_regions['flash_message'] = Location::view('flash', $this->skin, 'admin', $flash);
-
-        }
+    
 
         $missionFields = $this
             ->db

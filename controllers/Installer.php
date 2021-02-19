@@ -40,11 +40,11 @@ function __construct() {
       // Add item
   
 
-      $query = $this->ci->db->get_where('menu_items', array('menu_name' => 'Ordered Mission Posts Summary'));
+      $query = $this->ci->db->get_where('menu_items', array('menu_name' => 'Mission Posts Summary'));
     $item = ($query->num_rows() > 0) ? $query->row() : false;   
       if($item==false){
       $insertItem = $this->ci->menu_model->add_menu_item( [
-        'menu_name' => 'Ordered Mission Posts Summary',
+        'menu_name' => 'Mission Posts Summary',
         'menu_group' => 0,
         'menu_order' => 0,
         'menu_sim_type' => 1,

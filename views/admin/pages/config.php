@@ -10,7 +10,7 @@
 <?php } ?>
 
 			<p>
-				<kbd>Summary Field Size</kbd>
+				<kbd>Default Summary Field Size</kbd>
 				<input type="text" name="rows" onkeypress="return (function(evt)
        			 {
            			var charCode = (evt.which) ? evt.which : event.keyCode
@@ -29,7 +29,7 @@
 
 
 			<br>
-			<button name="submit" type="submit" class="button-main" value="Submit"><span>Update Labels</span></button>
+			<button name="submit" type="submit" class="button-main" value="Submit"><span>Update Configuration</span></button>
 <?php echo form_close(); ?>
 
 
@@ -53,21 +53,6 @@
 <?php } else { ?>
    <div><br>All expected columns found in the database</div>
     
-
-    <?php  if(empty($postFlag) ||empty($missionFlag)){?>
-
-    
-   <?php echo form_open('extensions/nova_ext_mission_post_summary/Manage/config/');?>
-        
-
-        <br>
-			<button name="submit" type="submit" class="button-main" value="createIndex"><span>Create Index</span></button>
-
-   	<?php echo form_close(); ?>
-
-   <?php } else {?>
-     <div><br>All expected indexes found in the database.</div>
-   <?php }?>
 <?php } ?>
 
 

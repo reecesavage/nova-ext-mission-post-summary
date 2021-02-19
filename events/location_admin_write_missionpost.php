@@ -21,7 +21,25 @@ $this->event->listen(['location', 'view', 'data', 'admin', 'write_missionpost'],
 
   
   switch($this->uri->segment(4)){
-  
+    
+       case 'view':
+
+
+ if(!empty($post->post_mission))
+   {
+   $query = $this->db->get_where('missions', array('mission_id' => $post->post_mission));
+   $model = ($query->num_rows() > 0) ? $query->row() : false;
+   if(!empty($model) && $model->mission_ext_mission_post_summary_enable==1)
+   {
+      
+   
+        $event['data']['inputs']['location']['value']= "$post->post_location </p><p><kbd>$summaryLabel </kbd> $post->nova_ext_mission_post_summary";
+
+   }
+   }  
+
+
+       break;
     default:
     
       
