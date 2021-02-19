@@ -52,7 +52,7 @@ Installation is now complete!
 
 ### Labels and Configuration
 The admin control panel for this extension allows the admin to change:
-- Labels to suite your games. 
+- Labels to suit your games. 
 - Enable or disable including the summary field in post emails. 
 - The Number of lines to show in the text box when authoring a mission post. Default 5.
 
