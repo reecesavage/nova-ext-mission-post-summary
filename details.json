@@ -1,0 +1,19 @@
+{
+	"name": "Mission Post Summary",
+	"version": "1.0.0",
+	"description": "This extension provides a summary text field for long mission posts.",
+	"url": "https://github.com/reecesavage/nova-ext-mission-post-summary",
+	"author": {
+		"name": "Sim Central",
+		"email": "info@simcentral.org",
+		"url": "https://simcentral.org"
+	},
+	"folder": "nova_ext_mission_post_summary",
+	"requiredExtensions": [
+		"jquery"
+	],
+	"configFiles": [
+		
+	],
+	"upgradeable": "yes"
+}

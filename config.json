@@ -6,11 +6,11 @@
         },
         "mission_ext_mission_post_summary_enable": {
             "name": "Summary Field Enable\/Disable - Label",
-            "value": "Summary Field Enable"
+            "value": "Summary"
         }
     },
     "setting": {
-        "summary_mode": "1",
-        "rows": "5"
+        "summary_mode": 0,
+        "rows": 5
     }
 }
