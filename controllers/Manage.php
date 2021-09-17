@@ -17,16 +17,18 @@ class __extensions__nova_ext_mission_post_summary__Manage extends Nova_controlle
     }
 
     public function getQuery($switch)
-    {
+    {   
+
+        $prefix= $this->db->dbprefix;
 
         switch ($switch)
         {
             case 'nova_ext_mission_post_summary':
-                $sql = "ALTER TABLE nova_posts ADD COLUMN nova_ext_mission_post_summary TEXT NULL DEFAULT NULL";
+                $sql = "ALTER TABLE {$prefix}posts ADD COLUMN nova_ext_mission_post_summary TEXT NULL DEFAULT NULL";
             break;
 
             case 'mission_ext_mission_post_summary_enable':
-                $sql = "ALTER TABLE nova_missions ADD COLUMN mission_ext_mission_post_summary_enable int(11) DEFAULT 0";
+                $sql = "ALTER TABLE {$prefix}missions ADD COLUMN mission_ext_mission_post_summary_enable int(11) DEFAULT 0";
             break;
 
             default:

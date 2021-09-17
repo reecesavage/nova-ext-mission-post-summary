@@ -42,7 +42,6 @@ $this->event->listen(['location', 'view', 'data', 'admin', 'write_missionpost'],
        break;
     default:
     
-      
       $event['data']['label']['nova_ext_mission_post_summary'] = $summaryLabel;
       $event['data']['inputs']['nova_ext_mission_post_summary'] = array(
         'name' => 'nova_ext_mission_post_summary',
@@ -62,8 +61,6 @@ $this->event->listen(['location', 'view', 'output', 'admin', 'write_missionpost'
     case 'view':
       break;
     default:
-     
-          
                 $event['output'] .= $this->extension['jquery']['generator']
                       ->select('#content-textarea')->closest('p')
                       ->before(
