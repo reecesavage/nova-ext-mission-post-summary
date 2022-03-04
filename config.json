@@ -10,7 +10,7 @@
         }
     },
     "setting": {
-        "summary_mode": 0,
-        "rows": 5
+        "summary_mode": "1",
+        "rows": "5"
     }
 }

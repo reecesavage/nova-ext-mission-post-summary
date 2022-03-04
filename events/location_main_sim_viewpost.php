@@ -32,7 +32,7 @@ $this->event->listen(['location', 'view', 'data', 'main', 'sim_viewpost'], funct
    if(!empty($model) && $model->mission_ext_mission_post_summary_enable==1)
    {
       
-
+        $post->post_location= $event['data']['location'];
         $event['data']['location'] = "$post->post_location <br> <b>$summaryLabel:</b> $post->nova_ext_mission_post_summary";
 
    }
