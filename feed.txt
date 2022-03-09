@@ -32,14 +32,42 @@
 
 
 
-    	if(in_array("nova_ext_mission_post_summary",$extensionsConfig['enabled']))
-		 {
+    	
 
         
          $summaryLabel = isset($summaryJson['nova_ext_mission_post_summary']['nova_ext_mission_post_summary'])
                         ? $summaryJson['nova_ext_mission_post_summary']['nova_ext_mission_post_summary']['value']
                         : 'Summary';
-		 }
+		 
+
+
+
+		     $extOrderConfigFilePath = dirname(__FILE__).'/../config.json';
+         
+        if ( file_exists( $extOrderConfigFilePath ) ) { 
+            $fileOrder = file_get_contents( $extOrderConfigFilePath );
+            $jsonOrder = json_decode( $fileOrder, true );
+    }
+
+       $editDayLabel = isset($jsonOrder['nova_ext_ordered_mission_posts']['label_view_prefix'])
+                        ? $jsonOrder['nova_ext_ordered_mission_posts']['label_view_prefix']['value']
+                        : 'Mission Day';
+       $editDateLabel = isset($jsonOrder['nova_ext_ordered_mission_posts']['label_view_prefix'])
+                        ? $jsonOrder['nova_ext_ordered_mission_posts']['label_view_prefix']['value']
+                        : 'Date';
+        $editStartDateLabel = isset($jsonOrder['nova_ext_ordered_mission_posts']['label_view_prefix'])
+                        ? $jsonOrder['nova_ext_ordered_mission_posts']['label_view_prefix']['value']
+                        : 'Stardate';
+  $viewConcatLabel = isset($jsonOrder['nova_ext_ordered_mission_posts']['label_view_concat'])
+                        ? $jsonOrder['nova_ext_ordered_mission_posts']['label_view_concat']['value']
+                        : 'at';
+  $viewSuffixLabel = isset($jsonOrder['nova_ext_ordered_mission_posts']['label_view_suffix'])
+                        ? $jsonOrder['nova_ext_ordered_mission_posts']['label_view_suffix']['value']
+                        : '';
+
+
+
+  
 
 
 		
@@ -85,7 +113,7 @@
 				$post_header.= ' '. implode(', ', $authors['full_names']) ."\r\n\r\n";
 				$post_header.= "<b>". ucfirst(lang('global_mission')) ."</b> - ". $this->mis->get_mission($post->post_mission, 'mission_title') ."\r\n";
 				$post_header.= ( ! empty($post->post_location)) ? "<b>". ucfirst(lang('labels_location')) ."</b> - ". $post->post_location ."\r\n" : '';
-				$post_header.= ( ! empty($post->post_timeline)) ? "<b>". ucfirst(lang('labels_timeline')) ."</b> - ". $post->post_timeline ."\r\n" : '';
+				 $timeline = $post->post_timeline;
 
 				if(in_array("nova_ext_mission_post_summary",$extensionsConfig['enabled']))
 		 {
@@ -97,6 +125,60 @@
 		 {
           $post_header.=  "<b>". ucfirst(lang('Content Level')) ."</b> - ". $json['default']['language']. $json['default']['sex']. $json['default']['violence'] ."\r\n" ;                     
 		 }
+
+ if(in_array("nova_ext_ordered_mission_posts",$extensionsConfig['enabled']))
+		 {
+
+ $query = $this->db->get_where('missions', array('mission_id' => $post->post_mission));
+   $model = ($query->num_rows() > 0) ? $query->row() : false;
+    if($model->mission_ext_ordered_config_setting=='day_time'){
+              
+
+              if($model->mission_ext_ordered_legacy_mode==1){
+                 $data['mission_day']='post_chronological_mission_post_day';
+                 $data['mission_time']='post_chronological_mission_post_time';
+              }else {
+                $data['mission_day']='nova_ext_ordered_post_day';
+                $data['mission_time']='nova_ext_ordered_post_time';
+              }
+           
+           $viewPrefixLabel=$editDayLabel;
+        
+          }else if($model->mission_ext_ordered_config_setting=='date_time')
+          {
+            $data['mission_day']='nova_ext_ordered_post_date';
+            $data['mission_time']='nova_ext_ordered_post_time';
+            $viewPrefixLabel=$editDateLabel;
+              
+          }else if($model->mission_ext_ordered_config_setting=='stardate')
+          {
+            $data['mission_day']='nova_ext_ordered_post_stardate';
+            $data['mission_time']='nova_ext_ordered_post_time';
+            $viewPrefixLabel=$editStartDateLabel;
+          }else {
+           
+           $data['mission_day']='';
+             $data['mission_time']='';
+          }
+
+            if(!empty($data['mission_day']))
+           {  $column= $data['mission_day'];
+               $timeColumn= $data['mission_time'];
+               $timeline = $viewPrefixLabel.' '.$post->$column.' '.$viewConcatLabel.' '.$post->$timeColumn.' '.$viewSuffixLabel;
+           }else {
+            $timeline = $post->post_timeline;
+           }
+
+
+
+}
+
+$post_header.= ( ! empty($timeline)) ? "<b>". ucfirst(lang('labels_timeline')) ."</b> - ". $timeline ."\r\n" : '';
+
+		 
+
+
+
 
 
 				$post_header.= "\r\n";
