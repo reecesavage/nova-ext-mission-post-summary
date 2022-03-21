@@ -57,3 +57,20 @@
 
 
 
+<?php if(empty($feed)){ ?>
+
+	<?php echo form_open('extensions/nova_ext_mission_post_summary/Manage/config/');?>
+	<br>
+	<div>Rss Feed Configuration Missing or Updated - This is expected if it is the first time you have used this Extension or an update has produced a change. Click the button below to modify your application/controlers/feed.php file or check the README file for manual instructions.</div>
+	<br>
+     
+	<button name="submit" type="submit" class="button-main" value="feed"><span>Update Controller Configuration</span></button>
+
+
+	<?php echo form_close(); ?>
+<?php } else { ?>
+   <div class="email-message"><br>Rss Feed located, and up to date.</div>
+<?php } ?>
+
+
+
