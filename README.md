@@ -16,7 +16,7 @@ This extension requires:
 - Nova Mod [`parser_events`](https://github.com/jonmatterson/nova-mod-parser_events)
 
 ## Upgrade Considerations
-- If upgrading Nova 2.6+ with Ordered Mission Posts already deployed:
+- If upgrading Nova 2.6+ with this Nove Extension already deployed:
 - Remove `$config['extensions']['enabled'][] = 'nova_ext_mission_post_summary';` from `application/config/extensions.php` prior to the Nova upgrade.
 - After upgrading Nova to 2.7.5+, follow the installation steps below. The database tables still contain your data
 
@@ -34,8 +34,6 @@ $config['extensions']['enabled'][] = 'nova_ext_mission_post_summary';
 - Navigate to your Admin Control Panel
 - Choose Mission Post Summary under Manage Extensions
 - Create Database Columns by clicking "Create Column" for each column. Once all columns are added, the message "All expected columns found in the database" will appear.
-- Create Database Index by clicking "Create Index, the message "All expected indexes found in the database" will appear.
-- Update the RSS feed and Write controllers by clicking the appropriate button. The messages "Email Configuration located, and up to date." and "Rss Feed located, and up to date." will appear.
 
 Installation is now complete!
 
