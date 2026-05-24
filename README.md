@@ -68,6 +68,6 @@ If you encounter a bug or have a feature request, please report it on GitHub in 
 
 ## License
 
-Copyright (c) 2023 Reece Savage.
+Copyright (c) 2026 Reece Savage.
 
 This module is open-source software licensed under the **MIT License**. The full text of the license may be found in the `LICENSE` file.
